@@ -35,6 +35,8 @@ clang \
   -o "$MACOS_DIR/$PRODUCT_NAME"
 
 cp "$ROOT_DIR/Resources/Info.plist" "$CONTENTS_DIR/Info.plist"
+xattr -cr "$APP_DIR"
+codesign --force --deep --sign - "$APP_DIR"
 ditto -c -k --sequesterRsrc --keepParent "$APP_DIR" "$ZIP_FILE"
 
 echo "Built app:"
