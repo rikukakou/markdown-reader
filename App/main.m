@@ -203,7 +203,7 @@
              ":root{color-scheme:light dark;--bg:#f5f1e8;--panel:#fffdf8;--text:#1f2328;--muted:#6b7280;--border:#ded6c8;--accent:#9a3412;--code:#efe7da;}"
              "@media (prefers-color-scheme: dark){:root{--bg:#171717;--panel:#202020;--text:#f3f4f6;--muted:#9ca3af;--border:#363636;--accent:#fb923c;--code:#111827;}}"
              "html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:17px/1.75 -apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"PingFang SC\",sans-serif;}"
-             "main{max-width:860px;margin:0 auto;padding:32px 36px 56px;background:var(--panel);min-height:100vh;box-sizing:border-box;}"
+             "main{width:100%%;max-width:none;margin:0;padding:32px 36px 56px;background:var(--panel);min-height:100vh;box-sizing:border-box;}"
              "h1,h2,h3,h4,h5,h6{line-height:1.25;margin:1.4em 0 .6em;font-weight:750;}"
              "h1{font-size:2.1em;border-bottom:1px solid var(--border);padding-bottom:.35em;}"
              "h2{font-size:1.6em;border-bottom:1px solid var(--border);padding-bottom:.25em;}"
@@ -321,6 +321,7 @@
     NSScrollView *sidebarScrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(0, 0, 300, 654)];
     sidebarScrollView.hasVerticalScroller = YES;
     sidebarScrollView.borderType = NSNoBorder;
+    sidebarScrollView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
 
     self.tableView = [[NSTableView alloc] initWithFrame:sidebarScrollView.bounds];
     self.tableView.headerView = nil;
@@ -339,6 +340,7 @@
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     self.webView = [[WKWebView alloc] initWithFrame:NSMakeRect(0, 0, 860, 654) configuration:config];
     self.webView.navigationDelegate = self;
+    self.webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
 
     [splitView addSubview:sidebarScrollView];
     [splitView addSubview:self.webView];
