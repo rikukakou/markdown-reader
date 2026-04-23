@@ -22,12 +22,6 @@ Markdown Reader is designed for local documentation sets, notes collections, and
 - Fast folder-based browsing without importing files into a database
 - A readable preview for structured Markdown documents
 
-## Screenshot
-
-The app is optimized for reading document collections on macOS with a split layout for navigation and preview.
-
-![Markdown Reader screenshot](docs/app-preview.png)
-
 ## Build
 
 Run:
@@ -43,7 +37,13 @@ After the build finishes, the app bundle will be created at:
 /Users/jiahao/Documents/Codex/2026-04-24-markdown-mac/build/Markdown Reader.app
 ```
 
-You can then move it to `/Applications`.
+The build also creates a release-ready zip archive at:
+
+```bash
+/Users/jiahao/Documents/Codex/2026-04-24-markdown-mac/build/Markdown-Reader-macOS.zip
+```
+
+You can move the `.app` to `/Applications`, or upload the `.zip` file to a GitHub Release.
 
 ## Project Structure
 
@@ -67,3 +67,4 @@ You can then move it to `/Applications`.
 - This is a native AppKit application written in Objective-C
 - The preview is HTML-based for better Markdown styling flexibility
 - Generated build artifacts are excluded from git
+- Release notes are available in `RELEASE_NOTES.md`
