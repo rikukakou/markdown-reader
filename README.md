@@ -45,6 +45,27 @@ The build also creates a release-ready zip archive at:
 
 You can move the `.app` to `/Applications`, or upload the `.zip` file to a GitHub Release.
 
+## First Launch on macOS
+
+Because the app is not notarized with an Apple Developer ID yet, macOS may block it the first time you open it.
+
+If you see a warning, open:
+
+`System Settings > Privacy & Security`
+
+Then find the blocked app notice and click `Open Anyway` / `仍要打开`.
+
+![macOS open anyway guidance](docs/macos-open-anyway.png)
+
+Recommended steps:
+
+1. Download and unzip the release
+2. Move `Markdown Reader.app` to `/Applications`
+3. Try opening the app once
+4. If macOS blocks it, go to `System Settings > Privacy & Security`
+5. Click `Open Anyway` / `仍要打开`
+6. Return to the app and confirm `Open`
+
 ## Project Structure
 
 - `App/main.m`: main macOS app implementation

@@ -24,3 +24,16 @@
 ### Build
 
 - Build script that produces a standalone macOS `.app`
+- Release-ready zip archive for GitHub Releases
+
+### Installation Note
+
+Because the app is not notarized with an Apple Developer ID yet, macOS may warn that it cannot verify the app.
+
+If that happens:
+
+1. Move `Markdown Reader.app` to `/Applications`
+2. Open `System Settings > Privacy & Security`
+3. Find the blocked app message
+4. Click `Open Anyway` / `仍要打开`
+5. Confirm the second open dialog
