@@ -5,8 +5,10 @@ A small native macOS app for scanning and reading Markdown documents in a folder
 ## Features
 
 - Choose one folder and auto-scan all `.md` and `.markdown` files inside it
-- Sidebar file list for quick switching between documents
-- HTML preview with more stable heading, list, quote, link, and code block formatting
+- Sidebar directory tree for quick switching between documents
+- Search files by name or relative path
+- HTML preview with full-width layout and better heading, list, quote, link, table, task-list, and code-block formatting
+- Drag and drop a folder directly into the window
 - Custom macOS app icon generated for this app and bundled during build
 - Native AppKit window for macOS
 - Build into a standalone `.app`
