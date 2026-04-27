@@ -11,6 +11,9 @@ A desktop app for scanning, organizing, and reading Markdown documents from a fo
 - Search files by name or relative path
 - Read Markdown in a clean preview pane
 - Better rendering for headings, lists, blockquotes, tables, task lists, code blocks, and links
+- Copy selected text from the preview pane
+- Zoom the preview with `Ctrl + Mouse Wheel`, `Ctrl + +`, `Ctrl + -`, and `Ctrl + 0`
+- Navigate long documents with a generated heading outline
 - Native desktop implementations for both macOS and Windows
 - Custom app icon source included in the repo
 
@@ -55,6 +58,17 @@ You can move the `.app` to `/Applications`, or upload the `.zip` file to a GitHu
 
 The Windows app lives in `Windows/markdown_reader.pyw` and is implemented with Python + Tkinter. It prefers repo-local dependencies from `.tools\python-deps`, so Markdown parsing stays consistent without requiring a global Python setup.
 
+Windows reading features:
+
+- Recursive Markdown scanning
+- Sidebar directory tree
+- File search
+- Styled preview for headings, lists, task lists, tables, quotes, code blocks, and links
+- Copy, select-all, and context menu support in the preview
+- Zoom controls for the reading view
+- Per-document outline with click-to-jump navigation
+- Local file links and web links
+
 Run locally:
 
 ```powershell
@@ -66,14 +80,6 @@ Open a folder immediately:
 ```powershell
 .\run_windows.cmd C:\path\to\docs
 ```
-
-The app supports:
-
-- Recursive Markdown scanning
-- Sidebar directory tree
-- File search
-- Styled preview for headings, lists, task lists, tables, quotes, code blocks, and links
-- Local file links and web links
 
 Build a portable Windows package:
 
@@ -102,6 +108,41 @@ build\Markdown-Reader-Windows-exe.zip
 ```
 
 The exe build uses PyInstaller and auto-generates a Windows `.ico` file from `Assets/AppIconSource.png`. If the required Python packages are not already available, the script installs them into `.tools\pyinstaller` and `.tools\python-deps` inside this repository.
+
+Portable package notes:
+
+- `Markdown Reader.cmd` launches the app on a machine with Python 3 installed
+- The packaged `.tools\python-deps` folder keeps Markdown rendering behavior consistent
+- This is useful for internal sharing when a fully bundled `.exe` is not required
+
+Standalone `.exe` notes:
+
+- `Markdown Reader.exe` does not require a separate Python installation
+- The executable embeds the generated Windows icon
+- If `build\exe\` is locked by a running app, the build script automatically falls back to a timestamped output folder
+
+## GitHub Release Workflow
+
+Recommended release assets:
+
+- `build\Markdown-Reader-macOS.zip`
+- `build\Markdown-Reader-Windows-portable.zip`
+- `build\Markdown-Reader-Windows-exe.zip`
+
+Recommended release flow:
+
+1. Build the macOS app with `./build.sh`
+2. Build the Windows portable package with `.\build_windows.ps1`
+3. Build the Windows exe package with `.\build_windows_exe.ps1`
+4. Smoke-test each build on its target platform
+5. Create a Git tag such as `v1.1.0`
+6. Upload the three zip archives to a GitHub Release
+
+Suggested naming:
+
+- macOS: `Markdown-Reader-macOS.zip`
+- Windows portable: `Markdown-Reader-Windows-portable.zip`
+- Windows exe: `Markdown-Reader-Windows-exe.zip`
 
 ## First Launch on macOS
 
@@ -134,6 +175,7 @@ Recommended steps:
 - `run_windows.cmd`: Windows launcher
 - `Assets/AppIconSource.png`: source artwork for the app icon
 - `scripts/generate_icon.py`: generates the `.icns` file used by macOS
+- `scripts/generate_windows_icon.py`: generates the `.ico` file used by Windows
 - `Resources/Info.plist`: app bundle metadata
 
 ## Current Features
@@ -142,7 +184,21 @@ Recommended steps:
 - Sidebar navigation tree
 - File search
 - Markdown preview with headings, tables, task lists, quotes, and code blocks
+- Preview copy and zoom controls
+- Outline-based heading navigation for long documents
 - Native desktop builds for macOS and Windows
+
+## Troubleshooting
+
+Windows:
+
+- If `Markdown Reader.cmd` says Python is missing, install Python 3 for Windows and make sure `pyw`, `pythonw`, or `python` is on `PATH`
+- If the exe build fails, rerun `.\build_windows_exe.ps1` after closing any running `Markdown Reader.exe` windows
+- If Markdown rendering looks incomplete, delete `.tools\python-deps` and rebuild so the local `markdown` package is reinstalled cleanly
+
+macOS:
+
+- If macOS blocks the app on first launch, use `System Settings > Privacy & Security > Open Anyway`
 
 ## Notes
 
