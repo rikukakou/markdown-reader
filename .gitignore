@@ -1,2 +1,5 @@
 build/
+.tools/
+*.spec
+__pycache__/
 .DS_Store
